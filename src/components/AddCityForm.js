@@ -1,32 +1,63 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from "react";
+import { connect } from "react-redux";
+import cityWeatherBlock from "./sampleweatherResponse.json";
+import * as cityWeatherActions from "../redux/actions/cityWeatherActions";
+import { PropTypes } from "prop-types";
 
 const AddCityForm = (props) => {
-  const [cityNameState, setCityNameState] = useState({cityName: ''});
-  const newCity = useRef();
+  // alert(JSON.stringify(cityWeatherBlock));
+  const [cityNameState, setCityNameState] = useState({ cityName: "" });
+  // const [newCityState, setnewCityState] = useState(cityWeatherBlock);
+  const obj = cityWeatherBlock;
+
   const eventHandler = (event) => {
     event.preventDefault();
-    console.log(this.cityInput.current.value)
+    setCityNameState({ cityName: event.target.value });
   };
-  const updateCities = () => {
+  const updateCities = (event) => {
+    event.preventDefault();
     let cityName = cityNameState.cityName;
-    if(cityName){
+    if (cityName) {
       props.addCity(cityName);
+      // setnewCityState({ ...newCityState, name: cityName });
+      obj.name = cityName;
+      debugger;
+      // alert(JSON.stringify(obj.name));
+      props.dispatch(cityWeatherActions.createCityWeather(cityWeatherBlock));
     }
-
   };
   return (
-  <form onSubmit={updateCities}>
-    <input 
-      id="textInput" 
-      class="input" 
-      size="32" 
-      value={cityNameState.cityName}
-      onChange={event => setCityNameState({ cityName: event.target.value })}
-      placeholder='Enter City' 
-      ref={newCity}
+    <form 
+    // onSubmit={updateCities}
+    >
+      <input
+        id="textInput"
+        className="input"
+        size="32"
+        value={cityNameState.cityName}
+        onChange={eventHandler}
+        placeholder="Enter City"
       ></input>
-  </form>
-);
+      <button onClick={updateCities}>Add Location</button>
+      {/* {props.citiesWeather.map((c) => (
+        <div key={c.name}>{c.name}</div>
+      ))} */}
+    </form>
+  );
 };
 
-export default AddCityForm;
+AddCityForm.propTypes = {
+  citiesWeather: PropTypes.array.isRequired,
+  dispatch: PropTypes.func.isRequired,
+};
+
+function mapStateToProps(
+  state
+  // , ownProps
+) {
+  return {
+    citiesWeather: state.citiesWeather,
+  };
+}
+
+export default connect(mapStateToProps)(AddCityForm);

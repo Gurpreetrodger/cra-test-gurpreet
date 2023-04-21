@@ -1,0 +1,37 @@
+{
+  "coord": { "lon": "", "lat": "" },
+  "weather": [
+    {
+      "id": "",
+      "main": "",
+      "description": "",
+      "icon": ""
+    },
+    { "id": "", "main": "", "description": "", "icon": "" }
+  ],
+  "base": "",
+  "main": {
+    "temp": "",
+    "feels_like": "",
+    "temp_min": "",
+    "temp_max": "",
+    "pressure": "",
+    "humidity": ""
+  },
+  "visibility": "",
+  "wind": { "speed": "", "deg": "", "gust": "" },
+  "rain": { "1h": "" },
+  "clouds": { "all": "" },
+  "dt": "",
+  "sys": {
+    "type": "",
+    "id": "",
+    "country": "",
+    "sunrise": "",
+    "sunset": ""
+  },
+  "timezone": "",
+  "id": "",
+  "name": "",
+  "cod": ""
+}
