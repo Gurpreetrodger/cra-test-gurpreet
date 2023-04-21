@@ -1,28 +1,27 @@
-import React, { useState } from 'react';
-import AddCityForm from '../AddCityForm';
-import MyWeatherCompList from '../MyWeatherCompList';
+import React, { useState } from "react";
+import AddCityForm from "../AddCityForm";
+import MyWeatherCards from "../MyWeatherCardsPage";
 
-let testCities = ['Austin', 'Miami' ];
+let testCities = ["Austin", "Miami"];
 
 const Header = () => {
-// const [tempDetails,setTemplateDetails] = React.useState(testData);
-  const [cities,setCities] = useState(testCities);
+  // const [tempDetails,setTemplateDetails] = React.useState(testData);
+  const [cities, setCities] = useState(testCities);
   const updatedCities = (newCity) => {
-    cities.push(newCity)
-    setCities(cities => [...cities,newCity] );
+    cities.push(newCity);
+    setCities((cities) => [...cities, newCity]);
+    alert(cities);
   };
 
-    return (
-        <>
-            <h2 >My Weather App - React-Redux</h2>
-            <h2>Overview - Weather Widget</h2>
-            <AddCityForm addCity={updatedCities}/>
-            <MyWeatherCompList cities={cities}/>
-        </>
-
-    );
+  return (
+    <>
+      <h2>My Weather App - React-Redux</h2>
+      <h2>Overview - Weather Widget</h2>
+      <AddCityForm addCity={updatedCities} />
+      <MyWeatherCards cities={cities} />
+    </>
+  );
 };
-
 
 // https://openweathermap.org/current​
 
@@ -37,7 +36,6 @@ const Header = () => {
 // https://ssl.gstatic.com/onebox/weather/128/rain.png ​
 
 // https://ssl.gstatic.com/onebox/weather/128/cloudy.png
-
 
 // const testData = [
 //     {'city': 'New York','currTemp': '18 ℃','lowTemp': 'Low 16 ℃','highTemp': 'High 26 ℃','humidity': 'Humidity 48 %','image':'https://ssl.gstatic.com/onebox/weather/128/sunny.png​'},
